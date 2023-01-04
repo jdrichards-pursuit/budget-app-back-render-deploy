@@ -52,12 +52,12 @@ tracts.put("/:index", async (req, res) => {
 });
 
 // CREATE
-tracts.post("/", async (req, res) => {
+tracts.post("/", (req, res) => {
   let newBody = { id: uuidv4(), ...req.body };
-  await tractsArray.push(newBody);
+  tractsArray.push(newBody);
   // updatePersistingData();
 
-  res.status(200).json(tractsArray.at(-1));
+  res.status(200).json(tractsArray[tractsArray.length - 1]);
 });
 
 // DELETE
