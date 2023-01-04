@@ -56,6 +56,7 @@ tracts.post("/", (req, res) => {
   let newBody = { id: uuidv4(), ...req.body };
   tractsArray.push(newBody);
   // updatePersistingData();
+  console.log("tractsArray", tractsArray);
 
   res.status(200).json(tractsArray[tractsArray.length - 1]);
 });
