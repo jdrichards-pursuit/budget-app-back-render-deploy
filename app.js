@@ -20,6 +20,7 @@ app.use("/tracts", tractsController);
 
 // 404 PAGE
 app.get("*", (req, res) => {
+  console.log("I am in the Redirected Route");
   res.status(404).send("I REDIRECTED WOOHOO");
 });
 
