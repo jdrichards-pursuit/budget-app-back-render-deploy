@@ -5,6 +5,7 @@ const tractsArray = require("../models/tracts.js");
 const { v4: uuidv4 } = require("uuid");
 
 const val = (req, res, next) => {
+  console.log("body", req.body);
   if (req.body.amount === 300) {
     next();
   } else {
@@ -20,6 +21,7 @@ const val = (req, res, next) => {
 // }
 // INDEX
 tracts.get("/", (req, res) => {
+  console.log("hit get route");
   res.status(400).json(tractsArray);
   // function readData(err, data) {
   //   const pData = JSON.parse(data);
@@ -64,7 +66,6 @@ tracts.post("/", val, (req, res) => {
   let newBody = { id: uuidv4(), ...req.body };
   tractsArray.push(newBody);
   // updatePersistingData();
-  console.log("tractsArray", tractsArray);
 
   res.status(200).json(tractsArray[tractsArray.length - 1]);
 });
