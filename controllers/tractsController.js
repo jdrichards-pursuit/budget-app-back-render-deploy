@@ -4,6 +4,14 @@ const tracts = express();
 const tractsArray = require("../models/tracts.js");
 const { v4: uuidv4 } = require("uuid");
 
+const val = (req, res, next) => {
+  if (req.body.amount === 300) {
+    next();
+  } else {
+    res.redirect("https://budget-app-server-1vwp.onrender.com/error");
+  }
+};
+
 //function to write to the text file
 // function updatePersistingData() {
 //   let stream = fs.createWriteStream("tracts.txt");
@@ -12,7 +20,7 @@ const { v4: uuidv4 } = require("uuid");
 // }
 // INDEX
 tracts.get("/", (req, res) => {
-  res.status(200).json(tractsArray);
+  res.status(400).json(tractsArray);
   // function readData(err, data) {
   //   const pData = JSON.parse(data);
   //   if (data && pData.length > 0) res.status(200).json(pData);
@@ -52,7 +60,7 @@ tracts.put("/:index", async (req, res) => {
 });
 
 // CREATE
-tracts.post("/", (req, res) => {
+tracts.post("/", val, (req, res) => {
   let newBody = { id: uuidv4(), ...req.body };
   tractsArray.push(newBody);
   // updatePersistingData();
