@@ -22,7 +22,7 @@ const val = (req, res, next) => {
 // INDEX
 tracts.get("/", (req, res) => {
   console.log("hit get route");
-  res.status(400).json(tractsArray);
+  res.status(200).json(tractsArray);
   // function readData(err, data) {
   //   const pData = JSON.parse(data);
   //   if (data && pData.length > 0) res.status(200).json(pData);
